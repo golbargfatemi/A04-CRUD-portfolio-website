@@ -1,0 +1,312 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+header h1 {
+  margin-bottom: 10px;
+  color: darkblue;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: gray;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  text-decoration: none;
+  color: #0d2946;
+}
+
+main {
+  padding: 20px;
+  min-height: 70vh;
+}
+
+main h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  margin-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.search-container input {
+  padding: 8px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.search-container button {
+  padding: 8px 16px;
+  background-color: #27486c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background-color: #0056b3;
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h2 {
+  margin-bottom: 10px;
+  color: navy;
+}
+
+.project-card p {
+  margin-bottom: 15px;
+}
+
+.project-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 10px 0;
+  list-style-type: none;
+}
+
+.project-card li {
+  background-color: lightblue;
+  color: darkblue;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.project-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.current-screenshot {
+  width: 250px;  /* Match other images */
+  height: 250px; /* Maintain uniformity */
+  object-fit: cover; /* Ensures the image fills the space */
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+  margin-top: 10px;
+}
+
+
+.contact-form {
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    height: 150px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.view-details {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.view-details:hover {
+  background-color: #0056b3;
+}
+.project-details {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.project-details h2 {
+  margin-bottom: 10px;
+  color: navy;
+}
+
+.project-details p {
+  margin-bottom: 15px;
+}
+
+.project-image-large {
+  max-width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin: 20px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.project-details ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.project-details li {
+  background-color: lightblue;
+  color: darkblue;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #12253A;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Edit and Delete Button Styling */
+.project-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+.project-actions .btn-create {
+  background-color:  #007bff;
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: 140px;
+  height: 40px;
+}
+
+.project-actions .btn-create:hover{
+  background-color: #0056b3;
+
+}
+
+.project-actions .btn {
+  padding: 10px 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 140px;
+  height: 40px;
+  text-align: center; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.project-actions .btn-edit {
+  background-color: #57BBB3;
+  text-decoration: none;
+  color: white;
+}
+
+.project-actions .btn-edit:hover {
+  background-color: #66B6C8;
+  transform: scale(1.05);
+}
+
+.project-actions .btn-delete {
+  background-color: #622027;
+  color: white;
+}
+
+.project-actions .btn-delete:hover {
+  background-color: #431016;
+  transform: scale(1.05);
+}
+
+

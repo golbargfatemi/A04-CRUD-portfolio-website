@@ -1,0 +1,26 @@
+<h1>Search Results for '<%= query %>'</h1>
+<div class="search-container">
+  <form action="/projects/search" method="GET">
+    <input type="text" name="query" placeholder="Search projects..." value="<%= query %>" required>
+    <button type="submit">Search</button>
+  </form>
+</div>
+<div class="projects-container">
+  <% if (results.length > 0) { %>
+    <% results.forEach(function(project) { %>
+      <div class="project-card">
+        <h2><%= project.title %></h2>
+        <p><%= project.summary %></p>
+        <ul>
+          <% project.tech.forEach(function(tech) { %>
+            <li><%= tech %></li>
+          <% }); %>
+        </ul>
+        <img src="<%= project.screenshot %>" alt="<%= project.title %>" class="project-image">
+        <a href="/projects/<%= project._id %>" class="view-details">View Details</a>
+      </div>
+    <% }); %>
+  <% } else { %>
+    <p>No projects found matching your search.</p>
+  <% } %>
+</div>

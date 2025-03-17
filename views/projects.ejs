@@ -1,0 +1,28 @@
+<h1>My Projects</h1>
+
+<div class="search-container">
+  <form action="/projects/search" method="GET">
+    <input type="text" name="query" placeholder="Search projects...">
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+<div class="project-actions">
+  <a href="/projects/create" class="btn btn-create">Create New Project</a>
+</div>
+
+<div class="projects-container">
+  <% projects.forEach(project => { %>
+    <div class="project-card">
+      <h2><%= project.title %></h2>
+      <p><%= project.summary %></p>
+      <ul>
+        <% project.tech.forEach(tech => { %>
+          <li><%= tech %></li>
+        <% }); %>
+      </ul>
+      <img src="<%= project.screenshot %>" alt="<%= project.title %>" class="project-image">
+      <a href="/projects/<%= project._id %>" class="view-details">View Details</a>
+    </div>
+  <% }); %>
+</div>
