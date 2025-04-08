@@ -1,10 +1,20 @@
 <header>
-    <h1>My Node.js Portfolio</h1>
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/about">About</a> |
-      <a href="/projects">Projects</a> |
-      <a href="/contact">Contact</a>
-    </nav>
-  </header>
-  
+  <h1>My Node.js Portfolio</h1>
+  <nav>
+    <a href="/">Home</a> |
+    <a href="/about">About</a> |
+    <a href="/projects">Projects</a> |
+    
+    <% if (!isAuthenticated) { %>
+      <a href="/contact">Contact</a> |
+      <a href="/login">Login</a> |
+      <a href="/register">Register</a>
+    <% } else { %>
+      <a href="/contact">Contact</a> |
+      <% if (isAdmin) { %>
+        <a href="/projects/create">Create Project</a> |
+      <% } %>
+      <a href="/logout">Logout</a>
+    <% } %>
+  </nav>
+</header>

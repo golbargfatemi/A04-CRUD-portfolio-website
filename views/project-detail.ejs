@@ -12,11 +12,14 @@
   </ul>
 </div>
 
-<div class="project-actions">
-  <a href="/projects/<%= project._id %>/edit" class="btn btn-edit">Edit Project</a>
-  
-  <form action="/projects/<%= project._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this project?');">
-    <button type="submit" class="btn btn-delete">Delete Project</button>
-  </form>
-</div>
+<% if (isAdmin) { %>
+  <div class="project-actions">
+    <a href="/projects/<%= project._id %>/edit" class="btn btn-edit">Edit Project</a>
+    
+    <form action="/projects/<%= project._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this project?');">
+      <button type="submit" class="btn btn-delete">Delete Project</button>
+    </form>
+  </div>
+<% } %>
+
 <a href="/projects" class="back-link">Back to All Projects</a>

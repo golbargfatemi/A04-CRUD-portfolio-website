@@ -1,14 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const contactController = require('../controllers/contactController');
+const { isAuthenticated } = require('../middleware/auth');
 
-// Display contact form
-router.get('/', contactController.getContactPage);
-
-// Process contact form submission
-router.post('/', contactController.submitContactForm);
-
-// Thank you page
-router.get('/thank-you', contactController.getThankYouPage);
+// Contact routes (authenticated users only)
+router.get('/', isAuthenticated, contactController.getContactPage);
+router.post('/', isAuthenticated, contactController.submitContactForm);
+router.get('/thank-you', isAuthenticated, contactController.getThankYouPage); 
 
 module.exports = router;

@@ -13,7 +13,7 @@ exports.getAllProjects = async (req, res) => {
     });
   } catch (error) {
     console.error("Error fetching projects:", error);
-    res.status(500).render("500", {
+    res.status(500).render("error", { 
       title: "Error",
       message: "Failed to load projects",
     });
@@ -28,18 +28,21 @@ exports.getProjectById = async (req, res) => {
     if (!project) {
       return res.status(404).render("404", {
         title: "Project Not Found",
+        isAdmin: req.isAuthenticated() && req.user && req.user.roles.includes('Admin')
       });
     }
 
     res.render("project-detail", {
       title: project.title,
       project,
+      isAdmin: req.isAuthenticated() && req.user && req.user.roles.includes('Admin')
     });
   } catch (error) {
     console.error("Error fetching project:", error);
-    res.status(500).render("500", {
+    res.status(500).render("error", { 
       title: "Error",
       message: "Failed to load project details",
+      isAdmin: req.isAuthenticated() && req.user && req.user.roles.includes('Admin')
     });
   }
 };
@@ -57,7 +60,7 @@ exports.searchProjects = async (req, res) => {
     });
   } catch (error) {
     console.error("Error searching projects:", error);
-    res.status(500).render("500", {
+    res.status(500).render("error", { 
       title: "Error",
       message: "Failed to search projects",
     });
@@ -74,7 +77,10 @@ exports.create = (req, res) => {
     });
   } catch (error) {
     console.error("Error rendering create form:", error);
-    res.status(500).send("Error rendering form: " + error.message);
+    res.status(500).render("error", {  
+      title: "Error",
+      message: "Failed to render form: " + error.message
+    });
   }
 };
 
@@ -104,11 +110,17 @@ exports.createProject = async (req, res) => {
 // Show form to edit a project
 exports.showEditForm = async (req, res) => {
   try {
+    // Check if user is authenticated and is an admin
+    if (!req.isAuthenticated() || !req.user.roles.includes('Admin')) {
+      req.flash('error', 'You do not have permission to edit projects');
+      return res.redirect('/projects');
+    }
+
     const project = await projectOps.getProjectById(req.params.id);
 
     if (!project) {
-      req.flash("error", "Project not found");
-      return res.redirect("/projects");
+      req.flash('error', 'Project not found');
+      return res.redirect('/projects');
     }
 
     res.render("edit-project", {
@@ -119,19 +131,24 @@ exports.showEditForm = async (req, res) => {
     });
   } catch (error) {
     console.error("Error fetching project for edit:", error);
-    req.flash("error", "Failed to load project for editing");
-    res.redirect("/projects");
+    req.flash('error', 'Failed to load project for editing');
+    res.redirect('/projects');
   }
 };
 
-// Update a project
 exports.updateProject = async (req, res) => {
   try {
+    // Check if user is authenticated and is an admin
+    if (!req.isAuthenticated() || !req.user.roles.includes('Admin')) {
+      req.flash('error', 'You do not have permission to update projects');
+      return res.redirect('/projects');
+    }
+
     const project = await projectOps.getProjectById(req.params.id);
 
     if (!project) {
-      req.flash("error", "Project not found");
-      return res.redirect("/projects");
+      req.flash('error', 'Project not found');
+      return res.redirect('/projects');
     }
 
     const projectData = {
@@ -166,20 +183,25 @@ exports.updateProject = async (req, res) => {
     res.redirect(`/projects/${req.params.id}`);
   } catch (error) {
     console.error("Error updating project:", error);
-    req.flash("error", "Failed to update project");
+    req.flash('error', 'Failed to update project');
     res.redirect(`/projects/${req.params.id}/edit`);
   }
 };
 
-// Delete a project
 exports.deleteProject = async (req, res) => {
   try {
+    // Check if user is authenticated and is an admin
+    if (!req.isAuthenticated() || !req.user.roles.includes('Admin')) {
+      req.flash('error', 'You do not have permission to delete projects');
+      return res.redirect('/projects');
+    }
+
     await projectOps.deleteProject(req.params.id);
     req.flash("success", "Project deleted successfully!");
     res.redirect("/projects");
   } catch (error) {
     console.error("Error deleting project:", error);
-    req.flash("error", "Failed to delete project");
+    req.flash('error', 'Failed to delete project');
     res.redirect("/projects");
   }
 };
