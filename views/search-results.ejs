@@ -1,9 +1,10 @@
 <h1>Search Results for '<%= query %>'</h1>
 <div class="search-container">
-  <form action="/projects/search" method="GET">
+  <form action="/projects/search" method="GET" style="display: flex; align-items: center;">
     <input type="text" name="query" placeholder="Search projects..." value="<%= query %>" required>
     <button type="submit">Search</button>
   </form>
+  <a href="/projects" class="btn-clear">Clear Search</a>
 </div>
 <div class="projects-container">
   <% if (results.length > 0) { %>

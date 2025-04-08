@@ -18,7 +18,7 @@ const upload = multer({ storage: storage });
 // Public routes (accessible to all)
 router.get("/", projectController.getAllProjects);
 router.get("/search", projectController.searchProjects);
-
+router.get('/projects/clear-search', projectController.clearSearch);
 // Admin-only routes - These specific routes must come BEFORE the /:id pattern
 router.get("/create", isAuthenticated, isAdmin, projectController.create);
 router.post("/", isAuthenticated, isAdmin, upload.single('screenshot'), projectController.createProject);

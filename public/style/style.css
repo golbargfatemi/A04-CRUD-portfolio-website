@@ -119,8 +119,23 @@ footer {
   background-color: #2980b9;
   transform: translateY(-2px);
 }
+.btn-clear {
+  display: inline-block;
+  padding: 6px 16px;
+  background-color: #8F2D26;
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
 
-/* Button Styles - Improved per feedback */
+.btn-clear:hover {
+  background-color: #8F2D26;
+}
 .btn {
   display: inline-block;
   padding: 12px 20px;

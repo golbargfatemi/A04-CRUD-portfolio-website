@@ -205,3 +205,15 @@ exports.deleteProject = async (req, res) => {
     res.redirect("/projects");
   }
 };
+
+exports.clearSearch = async (req, res) => {
+  try {
+    res.redirect('/projects');
+  } catch (error) {
+    console.error("Error clearing search:", error);
+    res.status(500).render("error", { 
+      title: "Error",
+      message: "Failed to clear search",
+    });
+  }
+};

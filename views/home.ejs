@@ -1,2 +1,21 @@
 <h1>Welcome to My Node.js Portfolio!</h1>
 <p>Hello! This is a portfolio showcasing my projects built with Node.js and Express.</p>
+
+<!-- Flash message display section -->
+<% if (flashes && flashes.success && flashes.success.length > 0) { %>
+    <div class="alert alert-success">
+      <%= flashes.success %>
+    </div>
+  <% } %>
+  
+  <% if (flashes && flashes.info && flashes.info.length > 0) { %>
+    <div class="alert alert-info">
+      <%= flashes.info %>
+    </div>
+  <% } %>
+  
+  <% if (flashes && flashes.error && flashes.error.length > 0) { %>
+    <div class="alert alert-danger">
+      <%= flashes.error %>
+    </div>
+  <% } %>
